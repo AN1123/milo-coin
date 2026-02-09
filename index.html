@@ -12,10 +12,11 @@
     <style>
         :root {
             --milano-blue: #003DA5;
+            --ice-blue: #B3D9FF;
             --milo-brown: #8B6F47;
             --gold: #FFD700;
+            --snow-white: #FFFFFF;
             --cream: #FAF8F5;
-            --charcoal: #2C2C2C;
         }
 
         * {
@@ -24,14 +25,58 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--cream);
-            color: var(--charcoal);
+            background: linear-gradient(180deg, #E8F4FF 0%, #FFFFFF 100%);
+            color: #2C2C2C;
             overflow-x: hidden;
+            position: relative;
         }
 
         h1, h2, h3, .serif {
             font-family: 'Playfair Display', serif;
             font-weight: 800;
+        }
+
+        /* Snowflake Animation */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 9999;
+            user-select: none;
+            pointer-events: none;
+            animation: snowfall linear infinite;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1em;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.3;
+            }
+        }
+
+        /* Floating Snowlets */
+        .snowlet {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(0, 61, 165, 0.2));
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .snowlet:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
 
         .fade-in {
@@ -50,11 +95,13 @@
             border-radius: 24px;
             box-shadow: 0 10px 40px rgba(0, 61, 165, 0.08);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(179, 217, 255, 0.3);
         }
 
         .card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 60px rgba(0, 61, 165, 0.15);
+            border-color: rgba(179, 217, 255, 0.6);
         }
 
         .btn-primary {
@@ -87,30 +134,14 @@
             color: white;
         }
 
-        .gold-accent {
-            color: var(--gold);
-            text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+        .winter-gradient {
+            background: linear-gradient(135deg, #E8F4FF 0%, #B3D9FF 100%);
         }
 
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .parallax {
-            transition: transform 0.3s ease-out;
+        .ice-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(179, 217, 255, 0.5);
         }
 
         nav {
@@ -119,16 +150,15 @@
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
         }
 
-        .gradient-blue {
-            background: linear-gradient(135deg, #003DA5 0%, #0066FF 100%);
-        }
-
-        .gradient-gold {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        .parallax {
+            transition: transform 0.1s ease-out;
         }
     </style>
 </head>
 <body>
+
+    <!-- Snow Effect Container -->
+    <div id="snow-container"></div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50">
@@ -138,7 +168,7 @@
             </div>
             <div class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <a href="#about" class="text-gray-700 hover:text-[var(--milano-blue)] transition">About</a>
-                <a href="#tokenomics" class="text-gray-700 hover:text-[var(--milano-blue)] transition">Tokenomics</a>
+                <a href="#community" class="text-gray-700 hover:text-[var(--milano-blue)] transition">Community</a>
                 <a href="#gallery" class="text-gray-700 hover:text-[var(--milano-blue)] transition">Gallery</a>
             </div>
             <a href="https://pump.fun" target="_blank" class="btn-primary">
@@ -148,35 +178,56 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-6">
+    <section class="pt-32 pb-20 px-6 relative overflow-hidden">
+        <!-- Floating Snowlets -->
+        <img src="snowlets.jpg" class="snowlet" style="top: 10%; left: 5%; animation-delay: 0s;" onclick="snowletClick(this)">
+        <img src="snowlets.jpg" class="snowlet" style="top: 60%; right: 10%; animation-delay: 2s;" onclick="snowletClick(this)">
+        
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="fade-in">
                     <div class="inline-block px-4 py-2 bg-blue-50 rounded-full text-[var(--milano-blue)] font-semibold text-sm mb-6">
-                        🏅 Official Milano Cortina 2026 Mascot
+                        ❄️ Official Milano Cortina 2026 Mascot
                     </div>
                     <h1 class="text-6xl lg:text-7xl mb-6 leading-tight">
-                        Meet <span class="gold-accent">Milo.</span><br>
-                        The Paralympic Legend.
+                        Meet <span style="color: var(--gold); text-shadow: 0 2px 12px rgba(255, 215, 0, 0.4);">Milo.</span><br>
+                        The Winter Legend.
                     </h1>
                     <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                        Born in the Italian Alps with a darker coat and an unbreakable spirit. Milo represents resilience, creativity, and the unstoppable will of the Paralympic Games.
+                        Born in the snowy Italian Alps with a darker coat and an unbreakable spirit. Milo and his Snowlet friends represent resilience, creativity, and the Paralympic movement.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="https://pump.fun" target="_blank" class="btn-primary text-center">
-                            🚀 Buy on Pump.fun
+                            ⛷️ Buy on Pump.fun
                         </a>
                         <a href="https://t.me/MiloTheStoat" target="_blank" class="btn-secondary text-center">
                             Join Community
                         </a>
                     </div>
                 </div>
-                <div class="fade-in">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/kWRIH4tujSw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="fade-in relative">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 61, 165, 0.2);">
+                        <iframe src="https://www.youtube.com/embed/kWRIH4tujSw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Snowlets Feature -->
+    <section class="py-20 px-6 winter-gradient relative overflow-hidden">
+        <img src="snowlets.jpg" class="snowlet" style="top: 20%; left: 15%; animation-delay: 1s;" onclick="snowletClick(this)">
+        <img src="snowlets.jpg" class="snowlet" style="bottom: 10%; right: 20%; animation-delay: 3s;" onclick="snowletClick(this)">
+        
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <h2 class="text-5xl mb-6 fade-in" style="color: var(--milano-blue);">Meet the Snowlets ❄️</h2>
+            <p class="text-xl text-gray-700 mb-12 max-w-3xl mx-auto fade-in">
+                Milo's loyal companions from the alpine village. These cheerful creatures help spread the Paralympic spirit across the mountains!
+            </p>
+            <div class="max-w-5xl mx-auto fade-in">
+                <img src="snowlets.jpg" alt="Snowlets Village" class="w-full rounded-3xl shadow-2xl border-4 border-white">
+            </div>
+            <p class="mt-8 text-sm text-gray-600 fade-in">💡 Click the floating Snowlets to see a surprise!</p>
         </div>
     </section>
 
@@ -184,9 +235,8 @@
     <section id="about" class="py-20 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="card overflow-hidden fade-in">
-                <img src="meet-banner.jpg" alt="Meet Milo" class="w-full object-cover">
                 <div class="p-12">
-                    <h2 class="text-5xl mb-6">The Spirit of <span class="gold-accent">Determination</span></h2>
+                    <h2 class="text-5xl mb-6">The Spirit of <span style="color: var(--gold);">Determination</span></h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg text-gray-700 leading-relaxed">
                         <div>
                             <p class="mb-4">
@@ -197,12 +247,12 @@
                             </p>
                         </div>
                         <div class="space-y-4">
-                            <div class="p-6 bg-blue-50 rounded-2xl">
+                            <div class="p-6 ice-card rounded-2xl">
                                 <h3 class="text-xl font-bold text-[var(--milano-blue)] mb-2">🏔️ Resilience</h3>
                                 <p class="text-gray-600">Born in the mountains, forged in the snow. Nothing stops Milo.</p>
                             </div>
-                            <div class="p-6 bg-yellow-50 rounded-2xl">
-                                <h3 class="text-xl font-bold text-[var(--milo-brown)] mb-2">✨ Creativity</h3>
+                            <div class="p-6 ice-card rounded-2xl">
+                                <h3 class="text-xl font-bold mb-2" style="color: var(--gold);">✨ Creativity</h3>
                                 <p class="text-gray-600">"Obstacles are just material for creativity."</p>
                             </div>
                         </div>
@@ -212,8 +262,8 @@
         </div>
     </section>
 
-    <!-- DJ Milo Feature -->
-    <section class="py-20 px-6 gradient-blue">
+    <!-- DJ Milo -->
+    <section class="py-20 px-6" style="background: linear-gradient(135deg, #003DA5 0%, #0066FF 100%);">
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-5xl text-white mb-6 fade-in">DJ Milo Drops the Beat 🎧</h2>
             <p class="text-xl text-blue-100 mb-12 fade-in">Milano nights never sounded so good.</p>
@@ -223,39 +273,40 @@
         </div>
     </section>
 
-    <!-- Tokenomics -->
-    <section id="tokenomics" class="py-20 px-6">
+    <!-- Community Section (Replaces Tokenomics) -->
+    <section id="community" class="py-20 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="fade-in">
-                    <img src="victory.jpg" alt="Victory Milo" class="w-full max-w-md mx-auto parallax">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-5xl mb-6">Join the <span style="color: var(--gold);">Community</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    $MILO is more than a coin. It's a movement celebrating the Paralympic spirit and winter sports culture.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card p-8 text-center fade-in">
+                    <div class="text-6xl mb-4">🔥</div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: var(--milano-blue);">100% LP Burned</h3>
+                    <p class="text-gray-600">Liquidity locked forever. Community first.</p>
                 </div>
-                <div class="fade-in space-y-8">
-                    <h2 class="text-5xl">Victory <span class="gold-accent">Tokenomics</span></h2>
-                    <div class="space-y-4">
-                        <div class="card p-6">
-                            <h3 class="text-2xl font-bold text-[var(--milano-blue)] mb-2">🔥 100% Liquidity Burned</h3>
-                            <p class="text-gray-600">Sent to the void. Forever.</p>
-                        </div>
-                        <div class="card p-6">
-                            <h3 class="text-2xl font-bold text-[var(--milano-blue)] mb-2">🛡️ Mint Authority Revoked</h3>
-                            <p class="text-gray-600">Community owned. No rug pulls.</p>
-                        </div>
-                        <div class="card p-6">
-                            <h3 class="text-2xl font-bold text-[var(--milano-blue)] mb-2">💎 0% Tax</h3>
-                            <p class="text-gray-600">Pure trading. Zero friction.</p>
-                        </div>
-                    </div>
+                <div class="card p-8 text-center fade-in">
+                    <div class="text-6xl mb-4">🛡️</div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: var(--milano-blue);">Mint Revoked</h3>
+                    <p class="text-gray-600">No rug pulls. Fully decentralized.</p>
+                </div>
+                <div class="card p-8 text-center fade-in">
+                    <div class="text-6xl mb-4">💎</div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: var(--milano-blue);">0% Tax</h3>
+                    <p class="text-gray-600">Pure trading. Zero friction.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contract Address -->
-    <section class="py-20 px-6 bg-white">
+    <section class="py-20 px-6 winter-gradient">
         <div class="max-w-4xl mx-auto text-center fade-in">
             <div class="card p-12">
-                <h2 class="text-3xl mb-6">Contract Address</h2>
+                <h2 class="text-3xl mb-6" style="color: var(--milano-blue);">Contract Address</h2>
                 <div id="ca-text" class="font-mono text-xl md:text-2xl font-bold text-[var(--milano-blue)] break-all mb-6 select-all">
                     XXXXXXXXXXXXXXXXXpump
                 </div>
@@ -267,9 +318,9 @@
     </section>
 
     <!-- Gallery -->
-    <section id="gallery" class="py-20 px-6">
+    <section id="gallery" class="py-20 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl text-center mb-16 fade-in">Milo's <span class="gold-accent">Sports</span></h2>
+            <h2 class="text-5xl text-center mb-16 fade-in">Milo's <span style="color: var(--gold);">Winter Sports</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card p-6 fade-in">
                     <img src="skiing.jpg" alt="Skiing" class="w-full h-64 object-cover rounded-2xl mb-4">
@@ -300,31 +351,62 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 px-6 bg-white border-t border-gray-200">
+    <footer class="py-16 px-6 winter-gradient border-t-4 border-white">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
             <div class="text-center md:text-left max-w-md">
-                <h3 class="text-3xl font-bold mb-4">$MILO</h3>
-                <p class="text-gray-600 mb-6">
+                <h3 class="text-3xl font-bold mb-4" style="color: var(--milano-blue);">$MILO</h3>
+                <p class="text-gray-700 mb-6">
                     A tribute to the Paralympic spirit. Built by the community, for the community.
                 </p>
                 <div class="flex gap-4 justify-center md:justify-start">
-                    <a href="#" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[var(--milano-blue)] hover:text-white transition">
+                    <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-[var(--milano-blue)] hover:text-white transition shadow-lg">
                         🐦
                     </a>
-                    <a href="#" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[var(--milano-blue)] hover:text-white transition">
+                    <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-[var(--milano-blue)] hover:text-white transition shadow-lg">
                         ✈️
                     </a>
                 </div>
             </div>
-            <img src="wave-static.jpg" alt="Milo Waving" class="w-48">
+            <img src="wave-static.jpg" alt="Milo Waving" class="w-48 parallax">
         </div>
-        <div class="text-center mt-12 pt-8 border-t border-gray-200 text-gray-500 text-sm">
+        <div class="text-center mt-12 pt-8 border-t-2 border-blue-200 text-gray-600 text-sm">
             © 2026 $MILO. Not affiliated with Milano Cortina 2026. This is a memecoin.
         </div>
     </footer>
 
     <script>
-        // Scroll animations
+        // Snowfall Effect
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            document.getElementById('snow-container').appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 300);
+
+        // Snowlet Click (Confetti)
+        function snowletClick(element) {
+            const rect = element.getBoundingClientRect();
+            confetti({
+                particleCount: 50,
+                spread: 60,
+                origin: {
+                    x: (rect.left + rect.width / 2) / window.innerWidth,
+                    y: (rect.top + rect.height / 2) / window.innerHeight
+                },
+                colors: ['#B3D9FF', '#003DA5', '#FFD700']
+            });
+        }
+
+        // Scroll Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -335,11 +417,10 @@
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Parallax effect
+        // Parallax Effect
         document.addEventListener('mousemove', (e) => {
-            const parallaxElements = document.querySelectorAll('.parallax');
-            parallaxElements.forEach(el => {
-                const speed = 0.05;
+            document.querySelectorAll('.parallax').forEach(el => {
+                const speed = 0.03;
                 const x = (window.innerWidth - e.pageX * speed) / 100;
                 const y = (window.innerHeight - e.pageY * speed) / 100;
                 el.style.transform = `translateX(${x}px) translateY(${y}px)`;
@@ -354,31 +435,10 @@
                 particleCount: 100,
                 spread: 70,
                 origin: { y: 0.6 },
-                colors: ['#003DA5', '#FFD700', '#8B6F47']
+                colors: ['#003DA5', '#FFD700', '#B3D9FF']
             });
-            alert('Contract Address copied! 🎉');
+            alert('Contract Address copied! ❄️');
         }
-
-        // Konami Code
-        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiIndex = 0;
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase() || e.key === konamiCode[konamiIndex]) {
-                konamiIndex++;
-                if (konamiIndex === konamiCode.length) {
-                    confetti({
-                        particleCount: 300,
-                        spread: 180,
-                        origin: { y: 0.5 }
-                    });
-                    alert('🎮 MILO MODE ACTIVATED! 🏅');
-                    konamiIndex = 0;
-                }
-            } else {
-                konamiIndex = 0;
-            }
-        });
     </script>
 </body>
 </html>
