@@ -177,8 +177,26 @@
 <body>
     <div class="grid-bg"></div>
 
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="logo.jpg" alt="Milo Logo" class="w-16 h-16 object-contain">
+                <span class="text-2xl font-black gradient-text hidden sm:block">$MILO</span>
+            </div>
+            <div class="hidden md:flex gap-6 mono text-sm">
+                <a href="#about" class="text-gray-300 hover:text-green-400 transition">ABOUT</a>
+                <a href="#chart" class="text-gray-300 hover:text-green-400 transition">CHART</a>
+                <a href="#gallery" class="text-gray-300 hover:text-green-400 transition">GALLERY</a>
+            </div>
+            <a href="https://pump.fun" target="_blank" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-xl font-bold text-sm transition pulse-glow">
+                BUY NOW
+            </a>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20 pt-32">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             
             <!-- Text -->
@@ -238,7 +256,7 @@
     </section>
 
     <!-- Live Chart Section -->
-    <section class="py-24 px-4 relative z-10 fade-in">
+    <section id="chart" class="py-24 px-4 relative z-10 fade-in">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-5xl font-black text-center mb-4 gradient-text">📈 Live Chart Simulation</h2>
             <p class="text-center text-gray-400 mb-12 mono">// Pump incoming...</p>
@@ -264,7 +282,7 @@
     </section>
 
     <!-- Milo in Action Gallery -->
-    <section class="py-24 px-4 relative z-10">
+    <section id="gallery" class="py-24 px-4 relative z-10">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-5xl md:text-6xl font-black text-center mb-4 fade-in">
                 <span class="gradient-text">Milo in Action</span>
@@ -313,7 +331,7 @@
     </section>
 
     <!-- About Milo -->
-    <section class="py-24 px-4 relative z-10 fade-in">
+    <section id="about" class="py-24 px-4 relative z-10 fade-in">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-5xl font-black mb-8 gradient-text">The Legend of Milo</h2>
             <div class="glass rounded-3xl p-12 text-left space-y-6 text-lg text-gray-300 leading-relaxed">
