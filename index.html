@@ -3,199 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$MILO - The Golden Stoat | Milano Cortina 2026</title>
-    <meta name="description" content="The resilient brother. The face of the Paralympic Winter Games. The meme of 2026.">
+    <title>$MILO - The Paralympic Legend | Milano Cortina 2026</title>
+    <meta name="description" content="Meet Milo, the official Paralympic mascot of Milano Cortina 2026. The darker brother. The unstoppable spirit.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --milano-blue: #0057B8;
-            --milo-brown: #5D4037;
-            --snow-white: #F8FAFC;
+            --milo-blue: #007BFF;
+            --milo-brown: #8D6E63;
             --gold: #FFD700;
+            --snow: #F8F9FA;
         }
         
+        * {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--snow-white);
-            color: #1a1a1a;
+            background: linear-gradient(135deg, #E3F2FD 0%, #F3E5F5 100%);
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .brand-font {
-            font-family: 'Russo One', sans-serif;
+        h1, h2, h3, .brand {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
         }
 
-        /* Glassmorphism */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        .gradient-text {
+            background: linear-gradient(135deg, #007BFF 0%, #8D6E63 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* Hero Snow Effect */
-        .snow-bg {
-            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
-            animation: snowfall 20s linear infinite;
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
-        @keyframes snowfall {
-            from { background-position: 0 0; }
-            to { background-position: 0 100%; }
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Button Glow */
-        .btn-glow:hover {
-            box-shadow: 0 0 20px rgba(0, 87, 184, 0.5);
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 123, 255, 0.2);
+        }
+
+        .ca-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
+            to { box-shadow: 0 0 40px rgba(118, 75, 162, 0.8); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .float-anim {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(0, 123, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 123, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
     </style>
 </head>
-<body class="snow-bg">
+<body class="grid-bg">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 top-0 transition-all duration-300 glass-card">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="brand-font text-2xl text-[var(--milano-blue)]">$MILO</span>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            
+            <!-- Text -->
+            <div class="text-center lg:text-left space-y-8">
+                <div class="inline-block">
+                    <span class="bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold text-blue-600 border border-blue-200">
+                        🏅 Milano Cortina 2026 Official
+                    </span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-700 hover:text-[var(--milano-blue)] transition font-medium">The Story</a>
-                    <a href="#tokenomics" class="text-gray-700 hover:text-[var(--milano-blue)] transition font-medium">Tokenomics</a>
-                    <a href="#roadmap" class="text-gray-700 hover:text-[var(--milano-blue)] transition font-medium">Roadmap</a>
-                </div>
-                <div>
-                    <a href="#" class="bg-[var(--milano-blue)] text-white px-6 py-2 rounded-full font-bold hover:bg-blue-700 transition btn-glow">
-                        Buy $MILO
+                
+                <h1 class="text-6xl md:text-7xl lg:text-8xl font-black leading-none">
+                    Meet <span class="gradient-text">Milo.</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-700 font-medium max-w-xl">
+                    The official <strong>Paralympic mascot</strong> of Milano Cortina 2026. 
+                    Born with a darker coat. Built with a stronger heart.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                    <a href="https://pump.fun" target="_blank" class="group bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition transform hover:scale-105 flex items-center justify-center gap-3">
+                        <span>Buy on Pump.fun</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="https://t.me/MiloTheStoat" target="_blank" class="bg-white/80 backdrop-blur-sm border-2 border-gray-300 text-gray-800 px-8 py-5 rounded-2xl font-bold text-lg hover:border-blue-500 hover:text-blue-600 transition flex items-center justify-center gap-3">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                        </svg>
+                        <span>Join Telegram</span>
                     </a>
                 </div>
             </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Text Content -->
-                <div class="text-center lg:text-left space-y-8">
-                    <span class="inline-block bg-blue-100 text-[var(--milano-blue)] px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase">
-                        The Spirit of 2026
-                    </span>
-                    <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight text-gray-900">
-                        Meet <span class="text-[var(--milo-brown)]">Milo.</span><br>
-                        The Golden Stoat.
-                    </h1>
-                    <p class="text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0">
-                        Born in the snow. Forged in the dark. While Tina represents the establishment, Milo represents the **resilient spirit**. The darker coat means a stronger heart.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="https://t.me/MiloPortal" target="_blank" class="bg-[var(--milano-blue)] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transition btn-glow flex items-center justify-center gap-2">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.694 0Zm5.229 6.229-2.228 9.389c-.168.766-.626.953-1.267.593l-3.507-2.586-1.691 1.629c-.187.187-.344.344-.705.344l.251-3.571 6.502-5.877c.283-.251-.061-.391-.439-.141l-8.038 5.061-3.465-1.082c-.753-.235-.769-.753.158-1.115l13.535-5.215c.627-.235 1.176.157.894 1.571Z"/></svg>
-                            Join Telegram
-                        </a>
-                        <a href="#" class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-bold text-lg hover:border-[var(--milano-blue)] hover:text-[var(--milano-blue)] transition flex items-center justify-center gap-2">
-                            View Chart 📈
-                        </a>
-                    </div>
+            <!-- Hero Image -->
+            <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-400/30 to-purple-400/30 blur-3xl"></div>
+                <img src="public/skiing.jpg" alt="Milo Skiing" class="relative z-10 w-full max-w-lg mx-auto float-anim drop-shadow-2xl">
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Contract Address Section -->
+    <section class="py-12 relative">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="ca-box rounded-3xl p-8 md:p-12 text-center text-white">
+                <div class="text-sm uppercase tracking-wider font-semibold mb-3 opacity-90">Contract Address</div>
+                <div class="font-mono text-xl md:text-2xl lg:text-3xl font-bold break-all select-all">
+                    XXXXXXXXXXXXXXXXXpump
+                </div>
+                <button onclick="navigator.clipboard.writeText('XXXXXXXXXXXXXXXXXpump')" class="mt-6 bg-white/20 hover:bg-white/30 backdrop-blur-sm px-6 py-3 rounded-xl font-semibold transition">
+                    📋 Copy Address
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milo in Action Gallery -->
+    <section class="py-24 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl md:text-6xl font-black text-center mb-4">
+                <span class="gradient-text">Milo in Action</span>
+            </h2>
+            <p class="text-center text-xl text-gray-600 mb-16">The unstoppable Paralympic legend conquers every sport.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass rounded-3xl p-6 hover-lift">
+                    <img src="public/skiing.jpg" alt="Skiing" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800">Alpine Skiing ⛷️</h3>
+                    <p class="text-gray-600 mt-2">Speed. Precision. Gold.</p>
                 </div>
 
-                <!-- Hero Image -->
-                <div class="relative group perspective-1000">
-                    <div class="absolute -inset-4 bg-gradient-to-r from-blue-400 to-purple-300 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition duration-500 animate-pulse"></div>
-                    <img src="public/hero.jpg" alt="Milo Skiing" class="relative z-10 w-full max-w-md mx-auto transform transition duration-500 hover:scale-105 hover:rotate-1 shadow-2xl rounded-3xl border-4 border-white">
-                    
-                    <!-- Floating Badge -->
-                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-xl glass-card animate-bounce hidden md:block">
-                        <div class="flex items-center gap-3">
-                            <div class="bg-yellow-400 w-10 h-10 rounded-full flex items-center justify-center font-bold text-white">🥇</div>
-                            <div>
-                                <div class="text-xs text-gray-500 uppercase font-bold">Status</div>
-                                <div class="font-bold text-[var(--milano-blue)]">Official Legend</div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Card 2 -->
+                <div class="glass rounded-3xl p-6 hover-lift">
+                    <img src="public/curling.jpg" alt="Curling" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800">Wheelchair Curling 🥌</h3>
+                    <p class="text-gray-600 mt-2">Strategy meets skill.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass rounded-3xl p-6 hover-lift">
+                    <img src="public/sledding.jpg" alt="Sledding" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800">Para Ice Hockey 🏒</h3>
+                    <p class="text-gray-600 mt-2">Fearless. Relentless.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass rounded-3xl p-6 hover-lift">
+                    <img src="public/sledding2.jpg" alt="Sledding 2" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800">Sledge Racing 🛷</h3>
+                    <p class="text-gray-600 mt-2">Pure adrenaline.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="glass rounded-3xl p-6 hover-lift">
+                    <img src="public/hockey.jpg" alt="Hockey" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800">Ice Hockey 🥅</h3>
+                    <p class="text-gray-600 mt-2">Teamwork. Victory.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="glass rounded-3xl p-6 hover-lift">
+                    <img src="public/snowboarding.jpg" alt="Snowboarding" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800">Snowboarding 🏂</h3>
+                    <p class="text-gray-600 mt-2">Style. Freedom. Air.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Marquee -->
-    <div class="bg-[var(--milano-blue)] py-4 overflow-hidden relative">
-        <div class="whitespace-nowrap animate-marquee flex gap-8 items-center text-white/90 font-bold text-xl uppercase tracking-widest">
-            <span>$MILO</span> <span>•</span> <span>Milano 2026</span> <span>•</span> <span>Paralympic Legend</span> <span>•</span> <span>The Stoat</span> <span>•</span> <span>Resilience</span> <span>•</span> <span>$MILO</span> <span>•</span> <span>Milano 2026</span> <span>•</span> <span>Paralympic Legend</span> <span>•</span> <span>The Stoat</span> <span>•</span> <span>Resilience</span>
-        </div>
-    </div>
-    <style>
-        .animate-marquee { animation: marquee 20s linear infinite; }
-        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    </style>
-
-    <!-- The Story -->
-    <section id="about" class="py-24 bg-white relative">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <span class="text-[var(--milo-brown)] font-bold uppercase tracking-wider mb-2 block">The Backstory</span>
-            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-8">Why Milo?</h2>
-            <div class="prose prose-lg mx-auto text-gray-600 leading-relaxed">
-                <p class="mb-6">
-                    Milo is a stoat, born in the mountains of Italy. Unlike his sister Tina, who has a light coat, Milo has a **darker brown coat**. In the wild, stoats turn white in winter to hide. Milo kept his color to stand out.
+    <!-- About Milo -->
+    <section class="py-24 px-4 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-black mb-8 gradient-text">The Legend of Milo</h2>
+            <div class="glass rounded-3xl p-12 text-left space-y-6 text-lg text-gray-700 leading-relaxed">
+                <p>
+                    <strong>Milo is a stoat</strong> — a small, agile mammal native to the Italian Alps. Unlike his sister Tina, who represents the Olympic Winter Games, Milo proudly represents the <strong>Paralympic Winter Games Milano Cortina 2026</strong>.
                 </p>
-                <p class="mb-6">
-                    He represents the **Paralympic Winter Games**. He was born without a part of his leg, but he learned to use his tail for balance and overcome every obstacle. He is the symbol of ingenuity, willpower, and creativity.
+                <p>
+                    Born with a <strong>darker brown coat</strong> and a prosthetic leg, Milo didn't let challenges define him. Instead, he turned them into <strong>strengths</strong>. His powerful tail became his secret weapon for balance. His creativity became unstoppable.
                 </p>
-                <blockquote class="border-l-4 border-[var(--milano-blue)] pl-6 italic text-xl text-gray-800 my-8">
+                <blockquote class="border-l-4 border-blue-500 pl-6 italic text-2xl text-gray-800">
                     "Obstacles are just material for creativity."
                 </blockquote>
                 <p>
-                    While Tina is the perfect Olympian, **Milo is the Degen**. He is the one who grinds when no one is watching. He is the one who turns 1 SOL into 100 SOL through sheer force of will.
+                    Milo is the embodiment of <strong>resilience, ingenuity, and willpower</strong>. He is the degen who grinds when no one is watching. The athlete who turns 1 SOL into 100 SOL through sheer determination.
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tokenomics -->
-    <section id="tokenomics" class="py-24 bg-gray-50 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 relative z-10">
-            <h2 class="text-4xl font-extrabold text-center mb-16">The Podium (Tokenomics)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:border-blue-200 transition transform hover:-translate-y-2 text-center">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">🔥</div>
-                    <h3 class="text-2xl font-bold mb-2">Liquidity Burned</h3>
-                    <p class="text-gray-500">100% of LP tokens sent to the abyss. Forever.</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:border-blue-200 transition transform hover:-translate-y-2 text-center ring-4 ring-yellow-100">
-                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">💎</div>
-                    <h3 class="text-2xl font-bold mb-2">Supply</h3>
-                    <p class="text-gray-500">1,000,000,000 (1 Billion) $MILO</p>
-                    <p class="text-sm text-[var(--milano-blue)] mt-2 font-bold">Zero Tax (0/0)</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:border-blue-200 transition transform hover:-translate-y-2 text-center">
-                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">🛡️</div>
-                    <h3 class="text-2xl font-bold mb-2">Mint Revoked</h3>
-                    <p class="text-gray-500">Contract ownership renounced. Community owned.</p>
-                </div>
+                <p class="text-center pt-4">
+                    <strong class="text-2xl gradient-text">Join the movement. Be like Milo. 🦫🏅</strong>
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-[#1a1a1a] text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
-                <span class="brand-font text-3xl text-[var(--milano-blue)]">$MILO</span>
-                <p class="text-gray-400 mt-2 text-sm">A tribute to the Paralympic spirit.</p>
+    <footer class="bg-gray-900 text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <h3 class="text-3xl font-black mb-4">$MILO</h3>
+                    <p class="text-gray-400">The official memecoin tribute to the Paralympic spirit of Milano Cortina 2026.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <div class="space-y-2">
+                        <a href="https://pump.fun" class="block text-gray-400 hover:text-white transition">Buy $MILO</a>
+                        <a href="https://t.me/MiloTheStoat" class="block text-gray-400 hover:text-white transition">Telegram</a>
+                        <a href="https://x.com" class="block text-gray-400 hover:text-white transition">Twitter / X</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Disclaimer</h4>
+                    <p class="text-gray-400 text-sm">
+                        $MILO is a community-driven memecoin. Not affiliated with the Milano Cortina 2026 Organizing Committee or the International Paralympic Committee.
+                    </p>
+                </div>
             </div>
-            <div class="flex gap-6">
-                <a href="#" class="text-gray-400 hover:text-white transition">Twitter / X</a>
-                <a href="#" class="text-gray-400 hover:text-white transition">Telegram</a>
-                <a href="#" class="text-gray-400 hover:text-white transition">DexScreener</a>
-            </div>
-            <div class="text-xs text-gray-500 text-center md:text-right">
-                © 2026 Milo Project.<br>Not affiliated with Milano Cortina 2026. This is a memecoin.
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                © 2026 $MILO Community. Built with ❤️ for the Paralympic spirit.
             </div>
         </div>
     </footer>
