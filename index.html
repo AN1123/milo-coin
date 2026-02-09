@@ -3,138 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$MILO - The Paralympic Legend | Milano Cortina 2026</title>
-    <meta name="description" content="Meet Milo, the official Paralympic mascot of Milano Cortina 2026. The darker brother. The unstoppable spirit.">
+    <title>$MILO - Official Paralympic Mascot Memecoin | Milano Cortina 2026</title>
+    <meta name="description" content="Join the $MILO movement. The official memecoin inspired by Milo, the Paralympic mascot of Milano Cortina 2026.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --milo-blue: #007BFF;
-            --milo-brown: #8D6E63;
+            --milano-blue: #003DA5;
+            --milo-brown: #8B6F47;
             --gold: #FFD700;
-            --snow: #F8F9FA;
-            --neon-green: #00FF88;
+            --cream: #FAF8F5;
+            --charcoal: #2C2C2C;
         }
-        
+
         * {
             scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #0a0e27;
-            color: #fff;
+            background: var(--cream);
+            color: var(--charcoal);
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Animated Grid Background */
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 123, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 123, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridScroll 20s linear infinite;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        @keyframes gridScroll {
-            from { background-position: 0 0; }
-            to { background-position: 50px 50px; }
-        }
-
-        /* Particle cursor trail */
-        .particle {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: var(--neon-green);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 1;
-            animation: particle-fade 1s ease-out forwards;
-            z-index: 9999;
-        }
-
-        @keyframes particle-fade {
-            to {
-                opacity: 0;
-                transform: scale(2);
-            }
-        }
-
-        h1, h2, h3, .brand {
-            font-family: 'Syne', sans-serif;
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
             font-weight: 800;
         }
 
-        .mono {
-            font-family: 'Space Mono', monospace;
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #00FF88 0%, #007BFF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        .card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 61, 165, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .glow {
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 61, 165, 0.15);
         }
 
-        .hover-lift {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--milano-blue) 0%, #0052CC 100%);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0, 61, 165, 0.3);
         }
 
-        .hover-lift:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.3);
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 61, 165, 0.4);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        .btn-secondary {
+            background: white;
+            color: var(--milano-blue);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 2px solid var(--milano-blue);
+            transition: all 0.3s ease;
         }
 
-        .float-anim {
-            animation: float 3s ease-in-out infinite;
+        .btn-secondary:hover {
+            background: var(--milano-blue);
+            color: white;
         }
 
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(0, 255, 136, 0.8), 0 0 60px rgba(0, 255, 136, 0.4); }
+        .gold-accent {
+            color: var(--gold);
+            text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
         }
 
-        .pulse-glow {
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-
-        /* Video container */
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            max-width: 100%;
-            background: #000;
             border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
 
         .video-container iframe {
@@ -143,267 +107,224 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 20px;
         }
 
-        /* Easter egg */
-        .konami-activated {
-            animation: rainbow 3s linear infinite;
+        .parallax {
+            transition: transform 0.3s ease-out;
         }
 
-        @keyframes rainbow {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
+        nav {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
         }
 
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease-out;
+        .gradient-blue {
+            background: linear-gradient(135deg, #003DA5 0%, #0066FF 100%);
         }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Chart container */
-        #pumpChart {
-            max-height: 400px;
+        .gradient-gold {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
         }
     </style>
 </head>
 <body>
-    <div class="grid-bg"></div>
 
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="logo.jpg" alt="Milo Logo" class="w-16 h-16 object-contain">
-                <span class="text-2xl font-black gradient-text hidden sm:block">$MILO</span>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <img src="logo.jpg" alt="Milo" class="h-14">
             </div>
-            <div class="hidden md:flex gap-6 mono text-sm">
-                <a href="#about" class="text-gray-300 hover:text-green-400 transition">ABOUT</a>
-                <a href="#chart" class="text-gray-300 hover:text-green-400 transition">CHART</a>
-                <a href="#gallery" class="text-gray-300 hover:text-green-400 transition">GALLERY</a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#about" class="text-gray-700 hover:text-[var(--milano-blue)] transition">About</a>
+                <a href="#tokenomics" class="text-gray-700 hover:text-[var(--milano-blue)] transition">Tokenomics</a>
+                <a href="#gallery" class="text-gray-700 hover:text-[var(--milano-blue)] transition">Gallery</a>
             </div>
-            <a href="https://pump.fun" target="_blank" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-xl font-bold text-sm transition pulse-glow">
-                BUY NOW
+            <a href="https://pump.fun" target="_blank" class="btn-primary">
+                Buy $MILO
             </a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20 pt-32">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-            
-            <!-- Text -->
-            <div class="text-center lg:text-left space-y-8 fade-in">
-                <div class="inline-block">
-                    <span class="glass px-4 py-2 rounded-full text-sm font-bold text-green-400 border border-green-500/30 glow">
-                        🏅 Milano Cortina 2026 Official
-                    </span>
+    <section class="pt-32 pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="inline-block px-4 py-2 bg-blue-50 rounded-full text-[var(--milano-blue)] font-semibold text-sm mb-6">
+                        🏅 Official Milano Cortina 2026 Mascot
+                    </div>
+                    <h1 class="text-6xl lg:text-7xl mb-6 leading-tight">
+                        Meet <span class="gold-accent">Milo.</span><br>
+                        The Paralympic Legend.
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Born in the Italian Alps with a darker coat and an unbreakable spirit. Milo represents resilience, creativity, and the unstoppable will of the Paralympic Games.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://pump.fun" target="_blank" class="btn-primary text-center">
+                            🚀 Buy on Pump.fun
+                        </a>
+                        <a href="https://t.me/MiloTheStoat" target="_blank" class="btn-secondary text-center">
+                            Join Community
+                        </a>
+                    </div>
                 </div>
-                
-                <h1 class="text-6xl md:text-7xl lg:text-8xl font-black leading-none">
-                    Meet <span class="gradient-text">Milo.</span>
-                </h1>
-                
-                <p class="text-xl md:text-2xl text-gray-300 font-medium max-w-xl mono">
-                    > Paralympic_Mascot.exe
-                    <br>> Status: <span class="text-green-400">UNSTOPPABLE</span>
-                    <br>> Resilience: <span class="text-yellow-400">MAX</span>
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-                    <a href="https://pump.fun" target="_blank" class="group bg-gradient-to-r from-green-500 to-blue-600 text-white px-8 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition transform hover:scale-105 flex items-center justify-center gap-3 pulse-glow">
-                        <span>🚀 Buy on Pump.fun</span>
-                    </a>
-                    
-                    <a href="https://t.me/MiloTheStoat" target="_blank" class="glass border-2 border-gray-600 text-gray-200 px-8 py-5 rounded-2xl font-bold text-lg hover:border-green-500 hover:text-green-400 transition flex items-center justify-center gap-3">
-                        <span>💬 Join Telegram</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Video -->
-            <div class="relative fade-in">
-                <div class="absolute inset-0 bg-gradient-to-br from-green-400/30 to-blue-400/30 blur-3xl"></div>
-                <div class="relative z-10 video-container">
-                    <iframe src="https://www.youtube.com/embed/kWRIH4tujSw?autoplay=0&mute=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="fade-in">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/kWRIH4tujSw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- DJ Milo Feature Section -->
-    <section class="py-24 px-4 relative z-10 overflow-hidden fade-in">
-        <div class="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-blue-900/30 to-pink-900/30 blur-3xl"></div>
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center mb-12">
-                <h2 class="text-5xl md:text-6xl font-black mb-4">
-                    <span class="gradient-text">🎧 DJ MILO DROPS THE BEAT</span>
-                </h2>
-                <p class="text-gray-400 text-xl mono">// Milano_Nights.mp3</p>
-            </div>
-            <div class="relative max-w-5xl mx-auto">
-                <div class="absolute -inset-8 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-3xl blur-2xl opacity-50 animate-pulse"></div>
-                <img src="dj.jpg" alt="DJ Milo" class="relative z-10 w-full rounded-3xl shadow-2xl border-4 border-purple-500/50">
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="card overflow-hidden fade-in">
+                <img src="meet-banner.jpg" alt="Meet Milo" class="w-full object-cover">
+                <div class="p-12">
+                    <h2 class="text-5xl mb-6">The Spirit of <span class="gold-accent">Determination</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg text-gray-700 leading-relaxed">
+                        <div>
+                            <p class="mb-4">
+                                Milo is more than a mascot. He is a symbol of the Paralympic movement—proof that obstacles are merely opportunities for creativity.
+                            </p>
+                            <p>
+                                Born with a prosthetic leg and a coat that didn't turn white in winter like other stoats, Milo turned his differences into strengths.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="p-6 bg-blue-50 rounded-2xl">
+                                <h3 class="text-xl font-bold text-[var(--milano-blue)] mb-2">🏔️ Resilience</h3>
+                                <p class="text-gray-600">Born in the mountains, forged in the snow. Nothing stops Milo.</p>
+                            </div>
+                            <div class="p-6 bg-yellow-50 rounded-2xl">
+                                <h3 class="text-xl font-bold text-[var(--milo-brown)] mb-2">✨ Creativity</h3>
+                                <p class="text-gray-600">"Obstacles are just material for creativity."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Live Chart Section -->
-    <section id="chart" class="py-24 px-4 relative z-10 fade-in">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl font-black text-center mb-4 gradient-text">📈 Live Chart Simulation</h2>
-            <p class="text-center text-gray-400 mb-12 mono">// Pump incoming...</p>
-            <div class="glass rounded-3xl p-8">
-                <canvas id="pumpChart"></canvas>
+    <!-- DJ Milo Feature -->
+    <section class="py-20 px-6 gradient-blue">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-5xl text-white mb-6 fade-in">DJ Milo Drops the Beat 🎧</h2>
+            <p class="text-xl text-blue-100 mb-12 fade-in">Milano nights never sounded so good.</p>
+            <div class="max-w-5xl mx-auto fade-in">
+                <img src="dj.jpg" alt="DJ Milo" class="w-full rounded-3xl shadow-2xl">
             </div>
         </div>
     </section>
 
-    <!-- Contract Address Section -->
-    <section class="py-12 relative z-10 fade-in">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="glass rounded-3xl p-8 md:p-12 text-center border-2 border-green-500/30">
-                <div class="text-sm uppercase tracking-wider font-semibold mb-3 text-green-400 mono">CONTRACT_ADDRESS</div>
-                <div id="ca-text" class="font-mono text-xl md:text-2xl lg:text-3xl font-bold break-all select-all text-gray-300">
+    <!-- Tokenomics -->
+    <section id="tokenomics" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <img src="victory.jpg" alt="Victory Milo" class="w-full max-w-md mx-auto parallax">
+                </div>
+                <div class="fade-in space-y-8">
+                    <h2 class="text-5xl">Victory <span class="gold-accent">Tokenomics</span></h2>
+                    <div class="space-y-4">
+                        <div class="card p-6">
+                            <h3 class="text-2xl font-bold text-[var(--milano-blue)] mb-2">🔥 100% Liquidity Burned</h3>
+                            <p class="text-gray-600">Sent to the void. Forever.</p>
+                        </div>
+                        <div class="card p-6">
+                            <h3 class="text-2xl font-bold text-[var(--milano-blue)] mb-2">🛡️ Mint Authority Revoked</h3>
+                            <p class="text-gray-600">Community owned. No rug pulls.</p>
+                        </div>
+                        <div class="card p-6">
+                            <h3 class="text-2xl font-bold text-[var(--milano-blue)] mb-2">💎 0% Tax</h3>
+                            <p class="text-gray-600">Pure trading. Zero friction.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contract Address -->
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+            <div class="card p-12">
+                <h2 class="text-3xl mb-6">Contract Address</h2>
+                <div id="ca-text" class="font-mono text-xl md:text-2xl font-bold text-[var(--milano-blue)] break-all mb-6 select-all">
                     XXXXXXXXXXXXXXXXXpump
                 </div>
-                <button onclick="copyCA()" class="mt-6 bg-green-600/20 hover:bg-green-600/40 border border-green-500 px-6 py-3 rounded-xl font-semibold transition text-green-400 mono">
-                    📋 COPY_ADDRESS()
+                <button onclick="copyCA()" class="btn-primary">
+                    📋 Copy Address
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Milo in Action Gallery -->
-    <section id="gallery" class="py-24 px-4 relative z-10">
+    <!-- Gallery -->
+    <section id="gallery" class="py-20 px-6">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl md:text-6xl font-black text-center mb-4 fade-in">
-                <span class="gradient-text">Milo in Action</span>
-            </h2>
-            <p class="text-center text-xl text-gray-400 mb-16 mono fade-in">// Paralympic_legend.load()</p>
-            
+            <h2 class="text-5xl text-center mb-16 fade-in">Milo's <span class="gold-accent">Sports</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Cards -->
-                <div class="glass rounded-3xl p-6 hover-lift fade-in">
+                <div class="card p-6 fade-in">
                     <img src="skiing.jpg" alt="Skiing" class="w-full h-64 object-cover rounded-2xl mb-4">
-                    <h3 class="text-2xl font-bold text-gray-100 mono">⛷️ Alpine_Skiing</h3>
-                    <p class="text-gray-400 mt-2">Speed. Precision. Gold.</p>
+                    <h3 class="text-2xl font-bold">⛷️ Alpine Skiing</h3>
                 </div>
-
-                <div class="glass rounded-3xl p-6 hover-lift fade-in">
+                <div class="card p-6 fade-in">
                     <img src="curling.jpg" alt="Curling" class="w-full h-64 object-cover rounded-2xl mb-4">
-                    <h3 class="text-2xl font-bold text-gray-100 mono">🥌 Wheelchair_Curling</h3>
-                    <p class="text-gray-400 mt-2">Strategy meets skill.</p>
+                    <h3 class="text-2xl font-bold">🥌 Wheelchair Curling</h3>
                 </div>
-
-                <div class="glass rounded-3xl p-6 hover-lift fade-in">
+                <div class="card p-6 fade-in">
                     <img src="sledding.jpg" alt="Sledding" class="w-full h-64 object-cover rounded-2xl mb-4">
-                    <h3 class="text-2xl font-bold text-gray-100 mono">🏒 Para_Ice_Hockey</h3>
-                    <p class="text-gray-400 mt-2">Fearless. Relentless.</p>
+                    <h3 class="text-2xl font-bold">🏒 Para Ice Hockey</h3>
                 </div>
-
-                <div class="glass rounded-3xl p-6 hover-lift fade-in">
+                <div class="card p-6 fade-in">
                     <img src="sledding2.jpg" alt="Sledding 2" class="w-full h-64 object-cover rounded-2xl mb-4">
-                    <h3 class="text-2xl font-bold text-gray-100 mono">🛷 Sledge_Racing</h3>
-                    <p class="text-gray-400 mt-2">Pure adrenaline.</p>
+                    <h3 class="text-2xl font-bold">🛷 Sledge Racing</h3>
                 </div>
-
-                <div class="glass rounded-3xl p-6 hover-lift fade-in">
+                <div class="card p-6 fade-in">
                     <img src="hockey.jpg" alt="Hockey" class="w-full h-64 object-cover rounded-2xl mb-4">
-                    <h3 class="text-2xl font-bold text-gray-100 mono">🥅 Ice_Hockey</h3>
-                    <p class="text-gray-400 mt-2">Teamwork. Victory.</p>
+                    <h3 class="text-2xl font-bold">🥅 Ice Hockey</h3>
                 </div>
-
-                <div class="glass rounded-3xl p-6 hover-lift fade-in">
+                <div class="card p-6 fade-in">
                     <img src="snowboarding.jpg" alt="Snowboarding" class="w-full h-64 object-cover rounded-2xl mb-4">
-                    <h3 class="text-2xl font-bold text-gray-100 mono">🏂 Snowboarding</h3>
-                    <p class="text-gray-400 mt-2">Style. Freedom. Air.</p>
+                    <h3 class="text-2xl font-bold">🏂 Snowboarding</h3>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Milo -->
-    <section id="about" class="py-24 px-4 relative z-10 fade-in">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-5xl font-black mb-8 gradient-text">The Legend of Milo</h2>
-            <div class="glass rounded-3xl p-12 text-left space-y-6 text-lg text-gray-300 leading-relaxed">
-                <p class="mono">
-                    <span class="text-green-400">&gt;</span> <strong>MILO.init()</strong>
-                </p>
-                <p>
-                    Milo is a stoat — a small, agile mammal native to the Italian Alps. Unlike his sister Tina, Milo represents the <strong class="text-green-400">Paralympic Winter Games Milano Cortina 2026</strong>.
-                </p>
-                <p>
-                    Born with a <strong class="text-yellow-400">darker brown coat</strong> and a prosthetic leg, Milo didn't let challenges define him. Instead, he turned them into <strong class="text-green-400">strengths</strong>.
-                </p>
-                <blockquote class="border-l-4 border-green-500 pl-6 italic text-2xl text-gray-200 mono">
-                    "Obstacles are just material for creativity."
-                </blockquote>
-                <p>
-                    Milo is the embodiment of <strong class="text-green-400">resilience, ingenuity, and willpower</strong>. He is the degen who grinds when no one is watching.
-                </p>
-                <p class="text-center pt-4 mono">
-                    <strong class="text-2xl gradient-text">&gt; JOIN_THE_MOVEMENT()</strong>
-                </p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black/50 border-t border-gray-800 py-16 px-4 relative z-10">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                <div>
-                    <h3 class="text-3xl font-black mb-4 gradient-text">$MILO</h3>
-                    <p class="text-gray-400 mono">// Paralympic_spirit.exe</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4 mono">QUICK_LINKS</h4>
-                    <div class="space-y-2">
-                        <a href="https://pump.fun" class="block text-gray-400 hover:text-green-400 transition mono">Buy $MILO</a>
-                        <a href="https://t.me/MiloTheStoat" class="block text-gray-400 hover:text-green-400 transition mono">Telegram</a>
-                        <a href="https://x.com" class="block text-gray-400 hover:text-green-400 transition mono">Twitter / X</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4 mono">DISCLAIMER</h4>
-                    <p class="text-gray-400 text-sm mono">
-                        // Not affiliated with Milano Cortina 2026
-                        <br>// Community-driven memecoin
-                        <br>// DYOR. NFA.
-                    </p>
+    <footer class="py-16 px-6 bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+            <div class="text-center md:text-left max-w-md">
+                <h3 class="text-3xl font-bold mb-4">$MILO</h3>
+                <p class="text-gray-600 mb-6">
+                    A tribute to the Paralympic spirit. Built by the community, for the community.
+                </p>
+                <div class="flex gap-4 justify-center md:justify-start">
+                    <a href="#" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[var(--milano-blue)] hover:text-white transition">
+                        🐦
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[var(--milano-blue)] hover:text-white transition">
+                        ✈️
+                    </a>
                 </div>
             </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm mono">
-                © 2026 $MILO. Built with 🦫 for the degens.
-                <br><span class="text-xs text-gray-700">// Easter egg: Try ↑↑↓↓←→←→BA</span>
-            </div>
+            <img src="wave-static.jpg" alt="Milo Waving" class="w-48">
+        </div>
+        <div class="text-center mt-12 pt-8 border-t border-gray-200 text-gray-500 text-sm">
+            © 2026 $MILO. Not affiliated with Milano Cortina 2026. This is a memecoin.
         </div>
     </footer>
 
     <script>
-        // Particle cursor trail
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.8) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = e.clientX + 'px';
-                particle.style.top = e.clientY + 'px';
-                document.body.appendChild(particle);
-                setTimeout(() => particle.remove(), 1000);
-            }
-        });
-
         // Scroll animations
-        const fadeElements = document.querySelectorAll('.fade-in');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -412,71 +333,33 @@
             });
         }, { threshold: 0.1 });
 
-        fadeElements.forEach(el => observer.observe(el));
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Copy CA with confetti
+        // Parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const parallaxElements = document.querySelectorAll('.parallax');
+            parallaxElements.forEach(el => {
+                const speed = 0.05;
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+                el.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+        });
+
+        // Copy CA
         function copyCA() {
-            const text = document.getElementById('ca-text').textContent;
+            const text = document.getElementById('ca-text').innerText.trim();
             navigator.clipboard.writeText(text);
             confetti({
                 particleCount: 100,
                 spread: 70,
                 origin: { y: 0.6 },
-                colors: ['#00FF88', '#007BFF', '#FFD700']
+                colors: ['#003DA5', '#FFD700', '#8B6F47']
             });
             alert('Contract Address copied! 🎉');
         }
 
-        // Live Chart
-        const ctx = document.getElementById('pumpChart').getContext('2d');
-        const labels = [];
-        const data = [];
-        let basePrice = 0.000001;
-
-        for (let i = 0; i < 50; i++) {
-            labels.push(`${i}s`);
-            basePrice += Math.random() * 0.0000002 - 0.00000005;
-            data.push(basePrice);
-        }
-
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: '$MILO',
-                    data: data,
-                    borderColor: '#00FF88',
-                    backgroundColor: 'rgba(0, 255, 136, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: { labels: { color: '#fff', font: { family: 'Space Mono' } } }
-                },
-                scales: {
-                    y: { ticks: { color: '#888' }, grid: { color: 'rgba(255,255,255,0.1)' } },
-                    x: { ticks: { color: '#888' }, grid: { color: 'rgba(255,255,255,0.1)' } }
-                }
-            }
-        });
-
-        // Update chart every 2s
-        setInterval(() => {
-            data.shift();
-            labels.shift();
-            basePrice += Math.random() * 0.0000004 - 0.0000001;
-            data.push(basePrice);
-            labels.push(`${labels.length}s`);
-            chart.update();
-        }, 2000);
-
-        // Konami Code Easter Egg
+        // Konami Code
         const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
         let konamiIndex = 0;
 
@@ -484,13 +367,12 @@
             if (e.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase() || e.key === konamiCode[konamiIndex]) {
                 konamiIndex++;
                 if (konamiIndex === konamiCode.length) {
-                    document.body.classList.add('konami-activated');
                     confetti({
                         particleCount: 300,
                         spread: 180,
                         origin: { y: 0.5 }
                     });
-                    alert('🎮 KONAMI CODE ACTIVATED! Rainbow mode enabled! 🌈');
+                    alert('🎮 MILO MODE ACTIVATED! 🏅');
                     konamiIndex = 0;
                 }
             } else {
