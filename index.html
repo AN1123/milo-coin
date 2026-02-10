@@ -59,24 +59,19 @@
             }
         }
 
-        /* Floating Snowlets */
-        .snowlet {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 4px 8px rgba(0, 61, 165, 0.2));
-            cursor: pointer;
-            transition: transform 0.3s ease;
+        /* Six Snowdrops Background */
+        .snowdrop {
+            position: fixed;
+            font-size: 2.5rem;
+            opacity: 0.15;
+            z-index: 1;
+            pointer-events: none;
+            animation: gentle-float 8s ease-in-out infinite;
         }
 
-        .snowlet:hover {
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+        @keyframes gentle-float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
         }
 
         .fade-in {
@@ -160,6 +155,14 @@
     <!-- Snow Effect Container -->
     <div id="snow-container"></div>
 
+    <!-- Six Snowdrops Background -->
+    <div class="snowdrop" style="top: 10%; left: 8%; animation-delay: 0s;">❄️</div>
+    <div class="snowdrop" style="top: 25%; right: 12%; animation-delay: 2s;">❄️</div>
+    <div class="snowdrop" style="top: 50%; left: 5%; animation-delay: 4s;">❄️</div>
+    <div class="snowdrop" style="top: 65%; right: 8%; animation-delay: 1s;">❄️</div>
+    <div class="snowdrop" style="top: 80%; left: 15%; animation-delay: 3s;">❄️</div>
+    <div class="snowdrop" style="top: 90%; right: 20%; animation-delay: 5s;">❄️</div>
+
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -179,22 +182,29 @@
 
     <!-- Hero Section -->
     <section class="pt-32 pb-20 px-6 relative overflow-hidden">
-        <!-- Floating Snowlets -->
-        <img src="snowlets.jpg" class="snowlet" style="top: 10%; left: 5%; animation-delay: 0s;" onclick="snowletClick(this)">
-        <img src="snowlets.jpg" class="snowlet" style="top: 60%; right: 10%; animation-delay: 2s;" onclick="snowletClick(this)">
-        
         <div class="max-w-7xl mx-auto">
+            <!-- Contract Address Banner -->
+            <div class="card p-6 mb-12 fade-in text-center">
+                <p class="text-sm text-gray-600 mb-2">📋 Contract Address</p>
+                <div id="ca-text-hero" class="font-mono text-lg md:text-xl font-bold text-[var(--milano-blue)] break-all mb-3 select-all">
+                    XXXXXXXXXXXXXXXXXpump
+                </div>
+                <button onclick="copyCA()" class="btn-primary text-sm">
+                    Copy Address
+                </button>
+            </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="fade-in">
                     <div class="inline-block px-4 py-2 bg-blue-50 rounded-full text-[var(--milano-blue)] font-semibold text-sm mb-6">
-                        ❄️ Official Milano Cortina 2026 Mascot
+                        ❄️ Official Milano Cortina 2026 Paralympic Mascot
                     </div>
                     <h1 class="text-6xl lg:text-7xl mb-6 leading-tight">
                         Meet <span style="color: var(--gold); text-shadow: 0 2px 12px rgba(255, 215, 0, 0.4);">Milo.</span><br>
                         The Winter Legend.
                     </h1>
                     <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                        Born in the snowy Italian Alps with a darker coat and an unbreakable spirit. Milo and his Snowlet friends represent resilience, creativity, and the Paralympic movement.
+                        Born in the snowy Italian Alps with a darker coat and an unbreakable spirit. Milo represents resilience, creativity, and the Paralympic movement.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="https://pump.fun" target="_blank" class="btn-primary text-center">
@@ -214,20 +224,12 @@
         </div>
     </section>
 
-    <!-- Snowlets Feature -->
+    <!-- Meet Milo Banner -->
     <section class="py-20 px-6 winter-gradient relative overflow-hidden">
-        <img src="snowlets.jpg" class="snowlet" style="top: 20%; left: 15%; animation-delay: 1s;" onclick="snowletClick(this)">
-        <img src="snowlets.jpg" class="snowlet" style="bottom: 10%; right: 20%; animation-delay: 3s;" onclick="snowletClick(this)">
-        
-        <div class="max-w-7xl mx-auto text-center relative z-10">
-            <h2 class="text-5xl mb-6 fade-in" style="color: var(--milano-blue);">Meet the Snowlets ❄️</h2>
-            <p class="text-xl text-gray-700 mb-12 max-w-3xl mx-auto fade-in">
-                Milo's loyal companions from the alpine village. These cheerful creatures help spread the Paralympic spirit across the mountains!
-            </p>
-            <div class="max-w-5xl mx-auto fade-in">
-                <img src="snowlets.jpg" alt="Snowlets Village" class="w-full rounded-3xl shadow-2xl border-4 border-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="fade-in">
+                <img src="meet-banner.jpg" alt="Meet Milo" class="w-full rounded-3xl shadow-2xl border-4 border-white">
             </div>
-            <p class="mt-8 text-sm text-gray-600 fade-in">💡 Click the floating Snowlets to see a surprise!</p>
         </div>
     </section>
 
@@ -273,46 +275,12 @@
         </div>
     </section>
 
-    <!-- Community Section (Replaces Tokenomics) -->
+    <!-- Victory Banner -->
     <section id="community" class="py-20 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-5xl mb-6">Join the <span style="color: var(--gold);">Community</span></h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    $MILO is more than a coin. It's a movement celebrating the Paralympic spirit and winter sports culture.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="card p-8 text-center fade-in">
-                    <div class="text-6xl mb-4">🔥</div>
-                    <h3 class="text-2xl font-bold mb-3" style="color: var(--milano-blue);">100% LP Burned</h3>
-                    <p class="text-gray-600">Liquidity locked forever. Community first.</p>
-                </div>
-                <div class="card p-8 text-center fade-in">
-                    <div class="text-6xl mb-4">🛡️</div>
-                    <h3 class="text-2xl font-bold mb-3" style="color: var(--milano-blue);">Mint Revoked</h3>
-                    <p class="text-gray-600">No rug pulls. Fully decentralized.</p>
-                </div>
-                <div class="card p-8 text-center fade-in">
-                    <div class="text-6xl mb-4">💎</div>
-                    <h3 class="text-2xl font-bold mb-3" style="color: var(--milano-blue);">0% Tax</h3>
-                    <p class="text-gray-600">Pure trading. Zero friction.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contract Address -->
-    <section class="py-20 px-6 winter-gradient">
-        <div class="max-w-4xl mx-auto text-center fade-in">
-            <div class="card p-12">
-                <h2 class="text-3xl mb-6" style="color: var(--milano-blue);">Contract Address</h2>
-                <div id="ca-text" class="font-mono text-xl md:text-2xl font-bold text-[var(--milano-blue)] break-all mb-6 select-all">
-                    XXXXXXXXXXXXXXXXXpump
-                </div>
-                <button onclick="copyCA()" class="btn-primary">
-                    📋 Copy Address
-                </button>
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-5xl mb-12 fade-in">Milo's <span style="color: var(--gold);">Victory Spirit</span></h2>
+            <div class="fade-in">
+                <img src="victory.jpg" alt="Milo Victory" class="w-full max-w-4xl mx-auto rounded-3xl shadow-2xl border-4 border-blue-100">
             </div>
         </div>
     </section>
@@ -392,20 +360,6 @@
 
         setInterval(createSnowflake, 300);
 
-        // Snowlet Click (Confetti)
-        function snowletClick(element) {
-            const rect = element.getBoundingClientRect();
-            confetti({
-                particleCount: 50,
-                spread: 60,
-                origin: {
-                    x: (rect.left + rect.width / 2) / window.innerWidth,
-                    y: (rect.top + rect.height / 2) / window.innerHeight
-                },
-                colors: ['#B3D9FF', '#003DA5', '#FFD700']
-            });
-        }
-
         // Scroll Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -429,7 +383,7 @@
 
         // Copy CA
         function copyCA() {
-            const text = document.getElementById('ca-text').innerText.trim();
+            const text = document.getElementById('ca-text-hero').innerText.trim();
             navigator.clipboard.writeText(text);
             confetti({
                 particleCount: 100,
