@@ -59,23 +59,6 @@
             }
         }
 
-        /* Six Snowlets Background */
-        .snowlet-bg {
-            position: fixed;
-            width: 120px;
-            height: 120px;
-            z-index: 1;
-            pointer-events: none;
-            animation: gentle-float 8s ease-in-out infinite;
-            opacity: 0.3;
-            mix-blend-mode: multiply;
-        }
-
-        @keyframes gentle-float {
-            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-            50% { transform: translateY(-20px) rotate(5deg) scale(1.1); }
-        }
-
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -162,19 +145,11 @@
     <!-- Snow Effect Container -->
     <div id="snow-container"></div>
 
-    <!-- Six Snowlets Background -->
-    <img src="snowlet1.jpg" class="snowlet-bg" style="top: 8%; left: 5%; animation-delay: 0s;" alt="">
-    <img src="snowlet2.jpg" class="snowlet-bg" style="top: 30%; right: 8%; animation-delay: 2s;" alt="">
-    <img src="snowlet3.jpg" class="snowlet-bg" style="top: 55%; left: 10%; animation-delay: 4s;" alt="">
-    <img src="snowlet4.jpg" class="snowlet-bg" style="top: 20%; right: 15%; animation-delay: 1s;" alt="">
-    <img src="snowlet5.jpg" class="snowlet-bg" style="top: 75%; left: 8%; animation-delay: 3s;" alt="">
-    <img src="snowlet6.jpg" class="snowlet-bg" style="top: 85%; right: 12%; animation-delay: 5s;" alt="">
-
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center gap-4">
-                <img src="logo.jpg" alt="Milo" class="h-14">
+                <img src="milo-logo.webp" alt="Milo" class="h-16 rounded-full">
             </div>
             <div class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <a href="#about" class="text-gray-700 hover:text-[var(--milano-blue)] transition">About</a>
@@ -236,14 +211,6 @@
                         📋 Copy CA
                     </button>
                 </div>
-                <div class="flex items-center justify-center gap-6 mt-8">
-                    <a href="https://pump.fun" target="_blank" class="btn-primary">
-                        Buy on Pump.fun
-                    </a>
-                    <a href="https://t.me/MiloTheStoat" target="_blank" class="btn-secondary">
-                        Telegram
-                    </a>
-                </div>
             </div>
         </div>
     </section>
@@ -252,7 +219,7 @@
     <section class="py-20 px-6 winter-gradient relative overflow-hidden">
         <div class="max-w-7xl mx-auto">
             <div class="fade-in">
-                <img src="meet-banner.jpg" alt="Meet Milo" class="w-full rounded-3xl shadow-2xl border-4 border-white">
+                <img src="milo-hero.webp" alt="Meet Milo" class="w-full max-w-4xl mx-auto rounded-3xl shadow-2xl">
             </div>
         </div>
     </section>
@@ -359,7 +326,7 @@
                     </a>
                 </div>
             </div>
-            <img src="wave-static.jpg" alt="Milo Waving" class="w-48 parallax milo-wave">
+            <img src="milo-footer.webp" alt="Milo" class="w-64 parallax rounded-2xl shadow-xl">
         </div>
         <div class="text-center mt-12 pt-8 border-t-2 border-blue-200 text-gray-600 text-sm">
             © 2026 $MILO. Not affiliated with Milano Cortina 2026. This is a memecoin.
