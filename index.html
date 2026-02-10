@@ -59,19 +59,21 @@
             }
         }
 
-        /* Six Snowdrops Background */
-        .snowdrop {
+        /* Six Snowlets Background */
+        .snowlet-bg {
             position: fixed;
-            font-size: 2.5rem;
-            opacity: 0.15;
+            width: 120px;
+            height: 120px;
             z-index: 1;
             pointer-events: none;
             animation: gentle-float 8s ease-in-out infinite;
+            opacity: 0.3;
+            mix-blend-mode: multiply;
         }
 
         @keyframes gentle-float {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-15px) scale(1.05); }
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(-20px) rotate(5deg) scale(1.1); }
         }
 
         .fade-in {
@@ -148,6 +150,11 @@
         .parallax {
             transition: transform 0.1s ease-out;
         }
+
+        .milo-wave {
+            mix-blend-mode: multiply;
+            filter: brightness(1.1);
+        }
     </style>
 </head>
 <body>
@@ -155,13 +162,13 @@
     <!-- Snow Effect Container -->
     <div id="snow-container"></div>
 
-    <!-- Six Snowdrops Background -->
-    <div class="snowdrop" style="top: 10%; left: 8%; animation-delay: 0s;">❄️</div>
-    <div class="snowdrop" style="top: 25%; right: 12%; animation-delay: 2s;">❄️</div>
-    <div class="snowdrop" style="top: 50%; left: 5%; animation-delay: 4s;">❄️</div>
-    <div class="snowdrop" style="top: 65%; right: 8%; animation-delay: 1s;">❄️</div>
-    <div class="snowdrop" style="top: 80%; left: 15%; animation-delay: 3s;">❄️</div>
-    <div class="snowdrop" style="top: 90%; right: 20%; animation-delay: 5s;">❄️</div>
+    <!-- Six Snowlets Background -->
+    <img src="snowlet1.jpg" class="snowlet-bg" style="top: 8%; left: 5%; animation-delay: 0s;" alt="">
+    <img src="snowlet2.jpg" class="snowlet-bg" style="top: 30%; right: 8%; animation-delay: 2s;" alt="">
+    <img src="snowlet3.jpg" class="snowlet-bg" style="top: 55%; left: 10%; animation-delay: 4s;" alt="">
+    <img src="snowlet4.jpg" class="snowlet-bg" style="top: 20%; right: 15%; animation-delay: 1s;" alt="">
+    <img src="snowlet5.jpg" class="snowlet-bg" style="top: 75%; left: 8%; animation-delay: 3s;" alt="">
+    <img src="snowlet6.jpg" class="snowlet-bg" style="top: 85%; right: 12%; animation-delay: 5s;" alt="">
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50">
@@ -183,17 +190,6 @@
     <!-- Hero Section -->
     <section class="pt-32 pb-20 px-6 relative overflow-hidden">
         <div class="max-w-7xl mx-auto">
-            <!-- Contract Address Banner -->
-            <div class="card p-6 mb-12 fade-in text-center">
-                <p class="text-sm text-gray-600 mb-2">📋 Contract Address</p>
-                <div id="ca-text-hero" class="font-mono text-lg md:text-xl font-bold text-[var(--milano-blue)] break-all mb-3 select-all">
-                    XXXXXXXXXXXXXXXXXpump
-                </div>
-                <button onclick="copyCA()" class="btn-primary text-sm">
-                    Copy Address
-                </button>
-            </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="fade-in">
                     <div class="inline-block px-4 py-2 bg-blue-50 rounded-full text-[var(--milano-blue)] font-semibold text-sm mb-6">
@@ -219,6 +215,34 @@
                     <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 61, 165, 0.2);">
                         <iframe src="https://www.youtube.com/embed/kWRIH4tujSw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contract Address Section -->
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="card p-10 fade-in" style="background: linear-gradient(135deg, rgba(0, 61, 165, 0.05) 0%, rgba(179, 217, 255, 0.1) 100%);">
+                <div class="text-center mb-6">
+                    <h3 class="text-3xl font-bold mb-2" style="color: var(--milano-blue);">Join the $MILO Movement</h3>
+                    <p class="text-gray-600">Copy the contract address and trade on Pump.fun</p>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-4 justify-center">
+                    <div id="ca-text-hero" class="font-mono text-lg md:text-xl font-bold text-[var(--milano-blue)] break-all select-all px-6 py-4 bg-white rounded-2xl border-2 border-blue-200 flex-1 text-center">
+                        XXXXXXXXXXXXXXXXXpump
+                    </div>
+                    <button onclick="copyCA()" class="btn-primary whitespace-nowrap">
+                        📋 Copy CA
+                    </button>
+                </div>
+                <div class="flex items-center justify-center gap-6 mt-8">
+                    <a href="https://pump.fun" target="_blank" class="btn-primary">
+                        Buy on Pump.fun
+                    </a>
+                    <a href="https://t.me/MiloTheStoat" target="_blank" class="btn-secondary">
+                        Telegram
+                    </a>
                 </div>
             </div>
         </div>
@@ -335,7 +359,7 @@
                     </a>
                 </div>
             </div>
-            <img src="wave-static.jpg" alt="Milo Waving" class="w-48 parallax">
+            <img src="wave-static.jpg" alt="Milo Waving" class="w-48 parallax milo-wave">
         </div>
         <div class="text-center mt-12 pt-8 border-t-2 border-blue-200 text-gray-600 text-sm">
             © 2026 $MILO. Not affiliated with Milano Cortina 2026. This is a memecoin.
